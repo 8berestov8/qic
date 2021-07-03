@@ -69,8 +69,8 @@
 		display: grid;
 	}
 	.animated {
-		-webkit-animation-duration: 10s;
-		animation-duration: 10s;
+		-webkit-animation-duration: 6s;
+		animation-duration: 6s;
 		-webkit-animation-fill-mode: both;
 		animation-fill-mode: both;
 	}
