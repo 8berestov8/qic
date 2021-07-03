@@ -4,7 +4,7 @@
 
 		<img class="car" src="../assets/car.png" />
 		<Title />
-		<Form />
+		<FormPhone />
 		<Heart />
 		<div class="working-since">
 			<p>We are working since</p>
@@ -52,14 +52,14 @@
 
 	import Logo from '../components/Logo.vue';
 	import Title from '../components/Title.vue';
-	import Form from '../components/Form.vue';
+	import FormPhone from '../components/FormPhone.vue';
 	import Heart from '../components/Heart.vue';
 	import MaskGroup from '../components/MaskGroup.vue';
 	import Covered from '../components/Covered.vue';
 
 	export default {
 		name: 'Home',
-		components: { Logo, Title, Form, Heart, MaskGroup, Covered },
+		components: { Logo, Title, FormPhone, Heart, MaskGroup, Covered },
 	};
 </script>
 

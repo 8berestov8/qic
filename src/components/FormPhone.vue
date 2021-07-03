@@ -5,23 +5,61 @@
 			<p class="discount">10% discount for online registration</p>
 		</div>
 		<div class="form-group">
+			<!-- <VuePhoneNumberInput
+				v-model="phone"
+				default-country-code="QA-DA"
+			></VuePhoneNumberInput> -->
 			<input
 				class="input-form"
 				type="tel"
 				name="num"
-				placeholder="Enter your phone"
-				value="+974"
+				placeholder=" +974     Enter your phone"
+				v-model="phone"
+				:class="{
+					notvalid: failedValidation.phone,
+					valid: failedValidation.phone === false,
+				}"
 			/>
 
-			<button class="btn-form">Get a Quote</button>
+			<button class="btn-form" @click.prevent="Start">
+				Get a Quote
+			</button>
 			<img class="flag" src="../assets/icon/hand.png" />
 		</div>
 	</form>
 </template>
 
 <script>
+	import VuePhoneNumberInput from 'vue-phone-number-input';
+	import 'vue-phone-number-input/dist/vue-phone-number-input.css';
 	export default {
 		name: 'Form',
+
+		data() {
+			return {
+				failedValidation: {
+					phone: null,
+				},
+				phone: '',
+			};
+		},
+		methods: {
+			Start() {
+				var x = this.phone
+					.replace(/\D/g, '')
+					.match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
+				this.phone = !x[2]
+					? x[1]
+					: '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
+				console.log(x);
+				if (this.phone) {
+					this.$router.push({ path: 'start' });
+				}
+			},
+		},
+		components: {
+			VuePhoneNumberInput,
+		},
 	};
 </script>
 
@@ -88,6 +126,9 @@
 	}
 	.input-form:focus {
 		border: 4px solid rgba(11, 102, 186, 0.22);
+	}
+	.notvalid {
+		border: 1px solid red;
 	}
 
 	.flag {
