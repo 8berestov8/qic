@@ -5,10 +5,6 @@
 			<p class="discount">10% discount for online registration</p>
 		</div>
 		<div class="form-group">
-			<!-- <VuePhoneNumberInput
-				v-model="phone"
-				default-country-code="QA-DA"
-			></VuePhoneNumberInput> -->
 			<input
 				class="input-form"
 				type="tel"
@@ -30,8 +26,6 @@
 </template>
 
 <script>
-	import VuePhoneNumberInput from 'vue-phone-number-input';
-	import 'vue-phone-number-input/dist/vue-phone-number-input.css';
 	export default {
 		name: 'Form',
 
@@ -57,9 +51,7 @@
 				}
 			},
 		},
-		components: {
-			VuePhoneNumberInput,
-		},
+		components: {},
 	};
 </script>
 
