@@ -10,19 +10,27 @@
 			<label class="label-plate" for="text">Enter your plate №</label>
 			<input class="input-plate" type="text" name="text" />
 
-			<!-- <input
-				class="input-model"
-				type="text"
-				name="text"
-				v-model="selectedModel"
-			/>
-			<ul>
-				<li v-for="result in modelResults" :key="result.id">
-					{{ result.name }}, {{ result.yahr }}
-				</li>
-			</ul> -->
+			<input class="input-model" v-model="selectedCar" />
 
-			<v-select class="input-model" label="name" :options="models"></v-select>
+			<div class="list">
+				<ul
+					v-for="model in modelResults"
+					:key="model.key"
+					@click="select(model)"
+				>
+					<li>{{ model.name }}</li>
+				</ul>
+				<ul
+					v-for="brand in brandResult"
+					:key="brand.key"
+					@click="select(brand)"
+				>
+					<li>{{ brand.name }}</li>
+				</ul>
+				<ul v-for="year in yearResult" :key="year.key" @click="select(year)">
+					<li>{{ year.name }}</li>
+				</ul>
+			</div>
 
 			<select class="input-type" type="text" name="text" v-model="selected">
 				<option value="" disabled selected>Vehicle Type</option>
@@ -67,39 +75,47 @@
 
 <script>
 	import Logo from '../components/Logo.vue';
-	import 'vue-select/dist/vue-select.css';
+
 	export default {
 		name: 'Start',
 		data() {
 			return {
-				model: null,
+				car: '',
 				options: [
 					{ text: 'Passenger', value: 'Passenger' },
 					{ text: 'Truck', value: 'Truck' },
 				],
 				selected: '',
-				selectedModel: '',
+				selectedCar: '',
 				modelResults: '',
-				models: [
-					{
-						name: 'Kia Rio',
-						yahr: '2021',
-					},
-					{
-						name: 'Hyndai Creta',
-						yahr: '2012',
-					},
-				],
+				brandResult: '',
+				yearResult: '',
+				models: [{ name: 'Kia' }, { name: 'Hyndai' }],
+				brands: [{ name: 'Rio' }, { name: 'Creta' }],
+				years: [{ name: '2021' }, { name: '2012' }, { name: '2013' }],
 			};
+		},
+		methods: {
+			select(val) {
+				console.log(val.name);
+			},
 		},
 
 		watch: {
-			selectedModel(val) {
-				const modId = this.models.filter(
-					(model) => model.name.includes(val) || model.yahr.includes(val)
-				);
-				this.modelResults = modId;
-				console.log(modId);
+			selectedCar(val) {
+				const modId = this.models.filter((model) => model.name.includes(val));
+				const brand = this.brands.filter((brand) => brand.name.includes(val));
+				const year = this.years.filter((year) => year.name.includes(val));
+				if (modId !== '') {
+					return (this.modelResults = modId);
+				}
+				if (brand !== '') {
+					return (this.modelResults = brand);
+				}
+				if (year !== '') {
+					return (this.yearResult = year);
+				}
+
 				//this.setCurrentDevice({deviceId: devId[0]['id']})
 			},
 		},
@@ -110,7 +126,7 @@
 	};
 </script>
 
-<style scoped>
+<style>
 	.start-info-box {
 		position: absolute;
 		width: 385px;
@@ -240,9 +256,22 @@
 
 		color: #ffffff;
 	}
+	.list {
+		position: absolute;
+		width: 488px;
+		border: none;
+		background: white;
+		top: 236px;
+		left: 33px;
+		z-index: 1;
+	}
+	li {
+		list-style-type: none;
+	}
 
-	#vs1__combobox .vs__dropdown-toggle {
-		border: none !important;
-		height: 64px;
+	ul:hover {
+		height: 20px;
+		background: #f0f4f7;
+		padding: 0 0 0 30px;
 	}
 </style>
