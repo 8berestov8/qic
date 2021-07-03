@@ -1,5 +1,5 @@
 <template>
-	<form id="form">
+	<form id="form" class="animated fadeIn">
 		<div class="form-title">
 			<p class="approximate">Get Insured in ~4 min</p>
 			<p class="discount">10% discount for online registration</p>
@@ -67,6 +67,34 @@
 		border-radius: 30px;
 		margin-bottom: 72px;
 		display: grid;
+	}
+	.animated {
+		-webkit-animation-duration: 10s;
+		animation-duration: 10s;
+		-webkit-animation-fill-mode: both;
+		animation-fill-mode: both;
+	}
+	@-webkit-keyframes fadeIn {
+		0% {
+			opacity: 0;
+		}
+		100% {
+			opacity: 1;
+		}
+	}
+
+	@keyframes fadeIn {
+		0% {
+			opacity: 0;
+		}
+		100% {
+			opacity: 1;
+		}
+	}
+
+	.fadeIn {
+		-webkit-animation-name: fadeIn;
+		animation-name: fadeIn;
 	}
 	.form-title {
 		display: flex;
