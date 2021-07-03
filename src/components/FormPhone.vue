@@ -40,12 +40,15 @@
 		},
 		methods: {
 			Start() {
-				const re = /^[+]*[(]{0,1}[0-9]{1,3}[)]{0,1}[-\s\./0-9]*$/g;
-				var valid = re.test(this.phone);
-				if (valid) {
-					this.output = true;
-					this.phone = '';
-					this.$router.push({ path: 'start' });
+				if (this.phone.length > 5) {
+					const re = /^[+]*[(]{0,1}[0-9]{1,3}[)]{0,1}[-\s\./0-9]*$/g;
+					console.log(this.phone);
+					var valid = re.test(this.phone);
+					if (valid) {
+						this.output = true;
+						this.phone = '';
+						this.$router.push({ path: 'start' });
+					}
 				} else {
 					this.output = false;
 				}
