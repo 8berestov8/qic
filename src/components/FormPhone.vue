@@ -12,8 +12,8 @@
 				placeholder=" +974     Enter your phone"
 				v-model="phone"
 				:class="{
-					notvalid: failedValidation.phone,
-					valid: failedValidation.phone === false,
+					notvalid: output === false,
+					valid: output === true,
 				}"
 			/>
 
@@ -32,22 +32,22 @@
 		data() {
 			return {
 				failedValidation: {
-					phone: null,
+					phone: '',
 				},
-				phone: '',
+				phone: '+974 ',
+				output: true,
 			};
 		},
 		methods: {
 			Start() {
-				var x = this.phone
-					.replace(/\D/g, '')
-					.match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
-				this.phone = !x[2]
-					? x[1]
-					: '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
-				console.log(x);
-				if (this.phone) {
+				const re = /^[+]*[(]{0,1}[0-9]{1,3}[)]{0,1}[-\s\./0-9]*$/g;
+				var valid = re.test(this.phone);
+				if (valid) {
+					this.output = true;
+					this.phone = '';
 					this.$router.push({ path: 'start' });
+				} else {
+					this.output = false;
 				}
 			},
 		},
@@ -102,12 +102,11 @@
 	}
 	.input-form {
 		width: 312px;
-		height: 64px;
+		height: 55px;
 		left: 24px;
 		top: 80px;
 		background: #f0f4f7;
 		border-radius: 16px;
-		/* background: url('../assets/icon/hand.png') no-repeat center left; */
 		padding-left: 30px;
 		font-weight: 500;
 		font-size: 18px;
@@ -115,12 +114,14 @@
 		color: #141414;
 		outline: none;
 		border: none;
+		border: 4px solid #f0f4f7;
 	}
 	.input-form:focus {
 		border: 4px solid rgba(11, 102, 186, 0.22);
 	}
 	.notvalid {
-		border: 1px solid red;
+		border: 4px solid rgb(245, 131, 131);
+		color: rgb(245, 131, 131);
 	}
 
 	.flag {
