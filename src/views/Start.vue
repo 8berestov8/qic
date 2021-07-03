@@ -103,9 +103,12 @@
 
 		watch: {
 			selectedCar(val) {
-				const modId = this.models.filter((model) => model.name.includes(val));
-				const brand = this.brands.filter((brand) => brand.name.includes(val));
-				const year = this.years.filter((year) => year.name.includes(val));
+				const modId =
+					this.models.filter((model) => model.name.includes(val)) ||
+					this.brands.filter((brand) => brand.name.includes(val)) ||
+					this.years.filter((year) => year.name.includes(val));
+				// const brand = this.brands.filter((brand) => brand.name.includes(val));
+				// const year = this.years.filter((year) => year.name.includes(val));
 				if (modId !== '') {
 					return (this.modelResults = modId);
 				}

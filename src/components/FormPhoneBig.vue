@@ -12,13 +12,48 @@
 				type="tel"
 				name="num"
 				placeholder=" +974     Enter your phone"
+				v-model="phone"
+				:class="{
+					notvalid: output === false,
+					valid: output === true,
+				}"
 			/>
 			<img class="flag" src="../assets/icon/hand.png" />
-			<button class="btn-form2">Check Your Price</button>
+			<button class="btn-form2" @click.prevent="Start">Check Your Price</button>
 		</form>
 	</div>
 </template>
 
+<script>
+	export default {
+		name: 'formPhoneBig',
+		data() {
+			return {
+				failedValidation: {
+					phone: '',
+				},
+				phone: '+974 ',
+				output: true,
+			};
+		},
+		methods: {
+			Start() {
+				if (this.phone.length > 5) {
+					const re = /^[+]*[(]{0,1}[0-9]{1,3}[)]{0,1}[-\s\./0-9]*$/g;
+					console.log(this.phone);
+					var valid = re.test(this.phone);
+					if (valid) {
+						this.output = true;
+						this.phone = '';
+						this.$router.push({ path: 'start' });
+					}
+				} else {
+					this.output = false;
+				}
+			},
+		},
+	};
+</script>
 <style scoped>
 	.form2 {
 		position: absolute;
@@ -111,5 +146,26 @@
 		height: 24px;
 		right: 407px;
 		top: 72px;
+	}
+
+	.input-form2:focus {
+		border: 4px solid rgba(11, 102, 186, 0.22);
+	}
+	.notvalid {
+		border: 4px solid rgb(245, 131, 131);
+		color: rgb(245, 131, 131);
+	}
+
+	.btn-form {
+		width: 200px;
+		height: 64px;
+		left: 352px;
+		top: 80px;
+		font-weight: 600;
+		font-size: 18px;
+		line-height: 110%;
+		color: #ffffff;
+		background: #141414;
+		border-radius: 16px;
 	}
 </style>
