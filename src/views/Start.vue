@@ -6,17 +6,34 @@
 			<p class="start-info">Let’s start by specifying vehicle information</p>
 		</div>
 
-		<form class="input-group">
+		<form class="input-group" @submit.prevent>
 			<label class="label-plate" for="text">Enter your plate №</label>
-			<input class="input-plate" type="select" name="text" />
-			<input class="input-model" type="text" name="text" />
-			<select
-				class="input-type"
+			<input class="input-plate" type="text" name="text" />
+
+			<!-- <input
+				class="input-model"
 				type="text"
 				name="text"
-				placeholder="Vehicle Type"
-				v-model="cars"
+				v-model="selectedModel"
 			/>
+			<ul>
+				<li v-for="result in modelResults" :key="result.id">
+					{{ result.name }}, {{ result.yahr }}
+				</li>
+			</ul> -->
+
+			<v-select class="input-model" label="name" :options="models"></v-select>
+
+			<select class="input-type" type="text" name="text" v-model="selected">
+				<option value="" disabled selected>Vehicle Type</option>
+				<option
+					v-for="option in options"
+					:key="option.text"
+					:value="option.value"
+					>{{ option.text }}</option
+				>
+			</select>
+
 			<div class="input-group-feature">
 				<input
 					class="input-feature"
@@ -50,13 +67,43 @@
 
 <script>
 	import Logo from '../components/Logo.vue';
+	import 'vue-select/dist/vue-select.css';
 	export default {
 		name: 'Start',
 		data() {
 			return {
-				cars: ['Passenger', 'Truck'],
+				model: null,
+				options: [
+					{ text: 'Passenger', value: 'Passenger' },
+					{ text: 'Truck', value: 'Truck' },
+				],
+				selected: '',
+				selectedModel: '',
+				modelResults: '',
+				models: [
+					{
+						name: 'Kia Rio',
+						yahr: '2021',
+					},
+					{
+						name: 'Hyndai Creta',
+						yahr: '2012',
+					},
+				],
 			};
 		},
+
+		watch: {
+			selectedModel(val) {
+				const modId = this.models.filter(
+					(model) => model.name.includes(val) || model.yahr.includes(val)
+				);
+				this.modelResults = modId;
+				console.log(modId);
+				//this.setCurrentDevice({deviceId: devId[0]['id']})
+			},
+		},
+
 		components: {
 			Logo,
 		},
@@ -115,6 +162,7 @@
 		border: 1px solid #dee4e8;
 		box-sizing: border-box;
 		border-radius: 19px;
+		text-indent: 30px;
 	}
 	.input-model {
 		position: absolute;
@@ -126,6 +174,7 @@
 		border-radius: 16px;
 		outline: none;
 		border: none;
+		text-indent: 30px;
 	}
 	.input-type {
 		position: absolute;
@@ -133,10 +182,13 @@
 		height: 64px;
 		left: 32px;
 		top: 248px;
-		background: #f0f4f7;
 		border-radius: 16px;
 		outline: none;
 		border: none;
+		text-indent: 30px;
+		background: url('../assets/icon/chevron-down.svg') no-repeat right #f0f4f7;
+		-webkit-appearance: none;
+		background-position-x: 447px;
 	}
 	.input-group-feature {
 		display: flex;
@@ -187,5 +239,10 @@
 		line-height: 108.2%;
 
 		color: #ffffff;
+	}
+
+	#vs1__combobox .vs__dropdown-toggle {
+		border: none !important;
+		height: 64px;
 	}
 </style>
