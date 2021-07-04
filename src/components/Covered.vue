@@ -5,14 +5,20 @@
 		</div>
 		<div class="covered-desc">
 			<div class="covered-item">
-				<img class="covered-item-icon" src="../assets/icon/collision.png" />
+				<img
+					class="covered-item-icon"
+					src="../assets/icon/icon-collision.svg"
+				/>
 				<p class="covered-item-title">Collision</p>
 				<p class="covered-item-desc">
 					Accidents with another vehicle, motorists, a fixed object and more
 				</p>
 			</div>
 			<div class="covered-item">
-				<img class="covered-item-icon" src="../assets/icon/comprehensive.png" />
+				<img
+					class="covered-item-icon"
+					src="../assets/icon/icon-comprehensive.svg"
+				/>
 				<p class="covered-item-title">Comprehensive</p>
 				<p class="covered-item-desc">
 					Coverage for things that are out of your control like weather,
@@ -20,7 +26,10 @@
 				</p>
 			</div>
 			<div class="covered-item">
-				<img class="covered-item-icon" src="../assets/icon/everything.png" />
+				<img
+					class="covered-item-icon"
+					src="../assets/icon/icon-everything-else.svg"
+				/>
 				<p class="covered-item-title">Everything else</p>
 				<p class="covered-item-desc">Roadside assistance services</p>
 			</div>
@@ -88,6 +97,7 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		margin-top: 24px;
 	}
 	.covered-item-title {
 		font-weight: 500;
