@@ -38,6 +38,7 @@
 		},
 		methods: {
 			Start() {
+				console.log('12');
 				if (this.phone.length > 5) {
 					const re = /^[+]*[(]{0,1}[0-9]{1,3}[)]{0,1}[-\s\./0-9]*$/g;
 					console.log(this.phone);
@@ -111,6 +112,7 @@
 		font-size: 18px;
 		line-height: 110%;
 		color: #141414;
+		border: 4px solid #f0f4f7;
 	}
 	.input-form2 :focus {
 		border: 4px solid rgba(11, 102, 186, 0.22);

@@ -1,8 +1,22 @@
 <template>
-	<div>
+	<div class="main">
 		<Logo />
-
-		<img class="car" src="../assets/car.png" />
+		<Gradient />
+		<div class="car-wrap">
+			<u-animate-container>
+				<u-animate
+					name="fadeIn"
+					delay="0s"
+					duration="3s"
+					:iteration="1"
+					:offset="0"
+					animateClass="animate__fadeIn"
+					:begin="false"
+				>
+					<img class="car" src="../assets/car.png" />
+				</u-animate>
+			</u-animate-container>
+		</div>
 		<Title />
 		<FormPhone />
 		<FormPhoneBig />
@@ -58,7 +72,8 @@
 	import MaskGroup from '../components/MaskGroup.vue';
 	import Covered from '../components/Covered.vue';
 	import FormPhoneBig from '../components/FormPhoneBig.vue';
-
+	import Gradient from '../components/Gradient.vue';
+	import { UAnimateContainer, UAnimate } from 'vue-wow';
 	export default {
 		name: 'Home',
 		data() {
@@ -72,17 +87,37 @@
 			MaskGroup,
 			Covered,
 			FormPhoneBig,
+			Gradient,
+			UAnimateContainer,
+			UAnimate,
 		},
 	};
 </script>
 
 <style scoped>
+	@import url('~animate.css');
+
+	.main {
+		z-index: 1;
+		position: relative;
+	}
+	.car-wrap {
+		width: 100%;
+		position: absolute;
+		overflow: hidden;
+		/*padding-top: 46%;*/
+		top: 10px;
+		height: 900px;
+		z-index: -1;
+	}
 	.car {
 		position: absolute;
-		width: 1295px;
-		height: 894.07px;
-		left: 564px;
-		top: -13px;
+		max-width: 1295px;
+		height: 100%;
+		width: 70%;
+		left: auto;
+		object-fit: contain;
+		right: 0;
 	}
 
 	.working-since {
@@ -102,6 +137,7 @@
 		left: 0px;
 		top: 1857px;
 		background: #b3c7df;
+		max-width: 100%;
 	}
 	.claims-title {
 		position: absolute;
@@ -148,19 +184,19 @@
 		width: 421px;
 		height: 56px;
 		left: 964px;
+		top: 3112px;
 	}
 	.customer-icon1 {
 		position: absolute;
 		width: 421px;
 		height: 56px;
-		top: 3105px;
 	}
 	.customer-icon2 {
 		position: absolute;
 		width: 421px;
 		height: 56px;
 		left: 40px;
-		top: 3172px;
+		top: 65px;
 	}
 	.qatar {
 		position: absolute;
