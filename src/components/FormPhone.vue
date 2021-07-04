@@ -20,7 +20,7 @@
 			<button class="btn-form" @click.prevent="Start">
 				Get a Quote
 			</button>
-			<img class="flag" src="../assets/icon/hand.png" />
+			<img class="flag" src="../assets/icon/flag.svg" />
 		</div>
 	</form>
 </template>
@@ -149,6 +149,10 @@
 	.input-form:focus {
 		border: 4px solid rgba(11, 102, 186, 0.22);
 	}
+	.input-form:hover {
+		border: 4px solid rgba(11, 102, 186, 0.22);
+	}
+
 	.notvalid {
 		border: 4px solid rgb(245, 131, 131);
 		color: rgb(245, 131, 131);
@@ -173,5 +177,12 @@
 		color: #ffffff;
 		background: #141414;
 		border-radius: 16px;
+		box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	}
+	.btn-form:hover {
+		background: #586067;
+		border: 4px solid #586067;
+		box-shadow: none;
+		box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
 	}
 </style>

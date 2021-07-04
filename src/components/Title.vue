@@ -1,7 +1,7 @@
 <template>
 	<div class="box">
 		<p class="title">
-			Hello! <img src="../assets/hand.png" /> I am QIC <br />
+			Hello! <img src="../assets/hand.svg" /> I am QIC <br />
 			insurance adviser
 		</p>
 		<p class="desc">

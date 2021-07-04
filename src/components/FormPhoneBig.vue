@@ -18,7 +18,7 @@
 					valid: output === true,
 				}"
 			/>
-			<img class="flag" src="../assets/icon/hand.png" />
+			<img class="flag" src="../assets/icon/flag.svg" />
 			<button class="btn-form2" @click.prevent="Start">Check Your Price</button>
 		</form>
 	</div>
@@ -153,21 +153,17 @@
 	.input-form2:focus {
 		border: 4px solid rgba(11, 102, 186, 0.22);
 	}
+
+	.input-form2:hover {
+		border: 4px solid rgba(11, 102, 186, 0.22);
+	}
 	.notvalid {
 		border: 4px solid rgb(245, 131, 131);
 		color: rgb(245, 131, 131);
 	}
-
-	.btn-form {
-		width: 200px;
-		height: 64px;
-		left: 352px;
-		top: 80px;
-		font-weight: 600;
-		font-size: 18px;
-		line-height: 110%;
-		color: #ffffff;
-		background: #141414;
-		border-radius: 16px;
+	.btn-form2:hover {
+		background: #586067;
+		box-shadow: none;
+		border: 4px solid #586067;
 	}
 </style>

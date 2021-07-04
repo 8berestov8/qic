@@ -55,18 +55,21 @@
 					type="text"
 					name="text"
 					placeholder="Seats qty"
+					v-model="seatsQty"
 				/>
 				<input
 					class="input-feature"
 					type="text"
 					name="text"
 					placeholder="No. of Cylinder"
+					v-model="noCylinder"
 				/>
 				<input
 					class="input-feature"
 					type="text"
 					name="text"
 					placeholder="First Reg. Year "
+					v-model="firstYear"
 				/>
 				<p class="text-card">
 					Year of registration metioned on your
@@ -75,7 +78,7 @@
 					>
 				</p>
 			</div>
-			<button class="form-btn">Processed</button>
+			<button class="form-btn">Proceed</button>
 		</form>
 	</div>
 </template>
@@ -88,6 +91,9 @@
 		data() {
 			return {
 				search: '',
+				seatsQty: '',
+				noCylinder: '',
+				firstYear: '',
 				options: [
 					{ text: 'Passenger', value: 'Passenger' },
 					{ text: 'Truck', value: 'Truck' },
@@ -119,6 +125,7 @@
 		},
 
 		computed: {
+			Plate() {},
 			selectedBrand() {
 				if (this.search !== '') {
 					return this.brands.filter((brand) => {
@@ -203,6 +210,7 @@
 		box-sizing: border-box;
 		border-radius: 19px;
 		text-indent: 30px;
+		font-size: 20px;
 	}
 	.input-model {
 		position: absolute;
@@ -238,6 +246,7 @@
 		background: url('../assets/icon/chevron-down.svg') no-repeat right #f0f4f7;
 		-webkit-appearance: none;
 		background-position-x: 447px;
+		font-size: 16px;
 	}
 	.input-group-feature {
 		display: flex;
@@ -256,6 +265,7 @@
 		margin: 17px 17px 0 0;
 		text-align: center;
 		border: none;
+		font-size: 13px;
 	}
 
 	.text-card {

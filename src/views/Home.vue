@@ -46,7 +46,7 @@
 		<!-- Qatar -->
 		<div class="qatar">
 			<p class="qatar-text">Digital Insurance Company №1 in Qatar</p>
-			<img src="../assets/icon/qatar.png" />
+			<img src="../assets/icon/qatar.svg" />
 		</div>
 
 		<!-- hotline -->
