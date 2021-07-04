@@ -10,24 +10,24 @@
 			<label class="label-plate" for="text">Enter your plate №</label>
 			<input class="input-plate" type="text" name="text" />
 
-			<input class="input-model" v-model="selectedCar" />
+			<input class="input-model" v-model="search" placeholder="Kia" />
 
 			<div class="list">
 				<ul
-					v-for="model in modelResults"
+					v-for="model in selectedModel"
 					:key="model.key"
 					@click="select(model)"
 				>
 					<li>{{ model.name }}</li>
 				</ul>
 				<ul
-					v-for="brand in brandResult"
+					v-for="brand in selectedBrand"
 					:key="brand.key"
-					@click="select(brand)"
+					@click="resulted(brand)"
 				>
 					<li>{{ brand.name }}</li>
 				</ul>
-				<ul v-for="year in yearResult" :key="year.key" @click="select(year)">
+				<ul v-for="year in selectedYear" :key="year.key" @click="select(year)">
 					<li>{{ year.name }}</li>
 				</ul>
 			</div>
@@ -80,16 +80,14 @@
 		name: 'Start',
 		data() {
 			return {
-				car: '',
+				search: '',
+				result: [],
 				options: [
 					{ text: 'Passenger', value: 'Passenger' },
 					{ text: 'Truck', value: 'Truck' },
 				],
 				selected: '',
-				selectedCar: '',
-				modelResults: '',
-				brandResult: '',
-				yearResult: '',
+
 				models: [{ name: 'Kia' }, { name: 'Hyndai' }],
 				brands: [{ name: 'Rio' }, { name: 'Creta' }],
 				years: [{ name: '2021' }, { name: '2012' }, { name: '2013' }],
@@ -97,29 +95,52 @@
 		},
 		methods: {
 			select(val) {
-				console.log(val.name);
+				this.search = val.name;
+				this.result.push(val.name);
+				val.name = '';
+			},
+			resulted(val) {
+				const oslSearch = this.search;
+				this.search = oslSearch + val.name;
 			},
 		},
 
-		watch: {
-			selectedCar(val) {
-				const modId =
-					this.models.filter((model) => model.name.includes(val)) ||
-					this.brands.filter((brand) => brand.name.includes(val)) ||
-					this.years.filter((year) => year.name.includes(val));
-				// const brand = this.brands.filter((brand) => brand.name.includes(val));
-				// const year = this.years.filter((year) => year.name.includes(val));
-				if (modId !== '') {
-					return (this.modelResults = modId);
-				}
-				if (brand !== '') {
-					return (this.modelResults = brand);
-				}
-				if (year !== '') {
-					return (this.yearResult = year);
-				}
+		computed: {
+			selectedModel() {
+				if (this.search !== '') {
+					return this.models.filter((model) => {
+						return model.name.includes(this.search);
+					});
 
-				//this.setCurrentDevice({deviceId: devId[0]['id']})
+					// const brand = this.brands.filter((brand) => brand.name.includes(val));
+					// const year = this.years.filter((year) => year.name.includes(val));
+					// if (modId !== '') {
+					// 	return (this.modelResults = modId);
+					// }
+					// if (brand !== '') {
+					// 	return (this.modelResults = brand);
+					// }
+					// if (year !== '') {
+					// 	return (this.yearResult = year);
+					// }
+					//this.setCurrentDevice({deviceId: devId[0]['id']})
+				}
+			},
+			selectedBrand() {
+				const a = this.search.split(' ')[1];
+				console.log(a);
+				if (a !== '') {
+					return this.brands.filter((brand) => {
+						return brand.name.includes(a);
+					});
+				}
+			},
+			selectedYear() {
+				if (this.search !== '') {
+					return this.years.filter((year) => {
+						return year.name.includes(this.search);
+					});
+				}
 			},
 		},
 
