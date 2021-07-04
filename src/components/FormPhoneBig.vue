@@ -38,7 +38,6 @@
 		},
 		methods: {
 			Start() {
-				console.log('12');
 				if (this.phone.length > 5) {
 					const re = /^[+]*[(]{0,1}[0-9]{1,3}[)]{0,1}[-\s\./0-9]*$/g;
 					console.log(this.phone);

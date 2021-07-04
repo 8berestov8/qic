@@ -15,7 +15,7 @@
 <style>
 	@font-face {
 		font-family: 'Regular';
-		src: url('./assets/fonts/Regular-Regular.ttf');
+		src: url('./assets/fonts/Ahmet Altun - Izmir-Regular.woff') format('woff');
 	}
 	html,
 	body,
