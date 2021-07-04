@@ -20,7 +20,7 @@
 			<button class="btn-form" @click.prevent="Start">
 				Get a Quote
 			</button>
-			<img class="flag" src="../assets/icon/flag.svg" />
+			<img class="flag" src="../assets/icon/flag.svg" v-if="!clearPhone" />
 		</div>
 	</form>
 </template>
@@ -35,6 +35,7 @@
 				},
 				phone: '+974 ',
 				output: true,
+				noPhone: false,
 			};
 		},
 		methods: {
@@ -53,7 +54,13 @@
 				}
 			},
 		},
-		components: {},
+		computed: {
+			clearPhone() {
+				if (this.phone == '') {
+					return (this.noPhone = true);
+				}
+			},
+		},
 	};
 </script>
 

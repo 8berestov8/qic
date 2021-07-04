@@ -18,7 +18,7 @@
 					valid: output === true,
 				}"
 			/>
-			<img class="flag" src="../assets/icon/flag.svg" />
+			<img class="flag" src="../assets/icon/flag.svg" v-if="!clearPhone" />
 			<button class="btn-form2" @click.prevent="Start">Check Your Price</button>
 		</form>
 	</div>
@@ -49,6 +49,13 @@
 					}
 				} else {
 					this.output = false;
+				}
+			},
+		},
+		computed: {
+			clearPhone() {
+				if (this.phone == '') {
+					return (this.noPhone = true);
 				}
 			},
 		},
@@ -145,8 +152,8 @@
 		position: absolute;
 		width: 24px;
 		height: 24px;
-		right: 407px;
-		top: 72px;
+		right: 391px;
+		top: 74px;
 	}
 
 	.input-form2:focus {
