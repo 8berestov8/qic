@@ -10,24 +10,31 @@
 			<label class="label-plate" for="text">Enter your plate №</label>
 			<input class="input-plate" type="text" name="text" />
 
-			<input class="input-model" v-model="search" placeholder="Kia" />
+			<label class="label-input-model">Brand, Model, Year</label>
+			<input class="input-model" v-model="search" placeholder="Kia Rio 2021" />
 
 			<div class="list">
 				<ul
-					v-for="model in selectedModel"
-					:key="model.key"
-					@click="select(model)"
-				>
-					<li>{{ model.name }}</li>
-				</ul>
-				<ul
 					v-for="brand in selectedBrand"
 					:key="brand.key"
-					@click="resulted(brand)"
+					@click="selectBrand(brand)"
 				>
 					<li>{{ brand.name }}</li>
 				</ul>
-				<ul v-for="year in selectedYear" :key="year.key" @click="select(year)">
+
+				<ul
+					v-for="model in selectedModel"
+					:key="model.key"
+					@click="selectModel(model)"
+				>
+					<li>{{ model.name }}</li>
+				</ul>
+
+				<ul
+					v-for="year in selectedYear"
+					:key="year.key"
+					@click="selectYear(year)"
+				>
 					<li>{{ year.name }}</li>
 				</ul>
 			</div>
@@ -81,64 +88,57 @@
 		data() {
 			return {
 				search: '',
-				result: [],
 				options: [
 					{ text: 'Passenger', value: 'Passenger' },
 					{ text: 'Truck', value: 'Truck' },
 				],
 				selected: '',
-
-				models: [{ name: 'Kia' }, { name: 'Hyndai' }],
-				brands: [{ name: 'Rio' }, { name: 'Creta' }],
+				oldSearch: '',
+				brands: [{ name: 'Kia' }, { name: 'Hyndai' }],
+				models: [{ name: 'Rio' }, { name: 'Creta' }],
 				years: [{ name: '2021' }, { name: '2012' }, { name: '2013' }],
 			};
 		},
 		methods: {
-			select(val) {
+			selectBrand(val) {
 				this.search = val.name;
-				this.result.push(val.name);
+				this.oldSearch = val.name;
 				val.name = '';
 			},
-			resulted(val) {
-				const oslSearch = this.search;
-				this.search = oslSearch + val.name;
+			selectModel(val) {
+				const newSearch = `${this.oldSearch} ${val.name}`;
+				this.oldSearch = newSearch;
+				this.search = newSearch;
+				val.name = '';
+			},
+			selectYear(val) {
+				const newSearch = `${this.oldSearch} ${val.name}`;
+				this.search = newSearch;
+				val.name = '';
 			},
 		},
 
 		computed: {
-			selectedModel() {
+			selectedBrand() {
 				if (this.search !== '') {
-					return this.models.filter((model) => {
-						return model.name.includes(this.search);
+					return this.brands.filter((brand) => {
+						return brand.name.includes(this.search);
 					});
-
-					// const brand = this.brands.filter((brand) => brand.name.includes(val));
-					// const year = this.years.filter((year) => year.name.includes(val));
-					// if (modId !== '') {
-					// 	return (this.modelResults = modId);
-					// }
-					// if (brand !== '') {
-					// 	return (this.modelResults = brand);
-					// }
-					// if (year !== '') {
-					// 	return (this.yearResult = year);
-					// }
-					//this.setCurrentDevice({deviceId: devId[0]['id']})
 				}
 			},
-			selectedBrand() {
+			selectedModel() {
 				const a = this.search.split(' ')[1];
-				console.log(a);
 				if (a !== '') {
-					return this.brands.filter((brand) => {
-						return brand.name.includes(a);
+					return this.models.filter((model) => {
+						return model.name.includes(a);
 					});
 				}
 			},
 			selectedYear() {
-				if (this.search !== '') {
+				const a = this.search.split(' ')[2];
+				if (a !== '') {
 					return this.years.filter((year) => {
-						return year.name.includes(this.search);
+						return year.name.includes(a);
 					});
 				}
 			},
@@ -215,6 +215,15 @@
 		outline: none;
 		border: none;
 		text-indent: 30px;
+		font-size: 20px;
+	}
+	.label-input-model {
+		position: absolute;
+		left: 53px;
+		top: 170px;
+		z-index: 1;
+		color: #757677;
+		font-size: 13px;
 	}
 	.input-type {
 		position: absolute;
@@ -257,7 +266,6 @@
 		top: 75px;
 		font-size: 13px;
 		line-height: 17px;
-
 		color: rgba(0, 0, 0, 0.37);
 	}
 	.text-card-strong {
@@ -269,15 +277,12 @@
 		height: 72px;
 		left: 32px;
 		top: 464px;
-
 		background: #1d1d1d;
 		border-radius: 17px;
 		color: #ffffff;
-
 		font-weight: 600;
 		font-size: 22px;
 		line-height: 108.2%;
-
 		color: #ffffff;
 	}
 	.list {
