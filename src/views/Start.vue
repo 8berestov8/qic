@@ -189,7 +189,7 @@
 	}
 	.label-plate {
 		position: absolute;
-		width: 196px;
+		width: 200px;
 		height: 24px;
 		left: 35px;
 		top: 31px;

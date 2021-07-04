@@ -20,7 +20,7 @@
 			<button class="btn-form" @click.prevent="Start">
 				Get a Quote
 			</button>
-			<img class="flag" src="../assets/icon/flag.svg" v-if="!clearPhone" />
+			<img class="flag" src="../assets/icon/flag.svg" />
 		</div>
 	</form>
 </template>
@@ -51,13 +51,6 @@
 					}
 				} else {
 					this.output = false;
-				}
-			},
-		},
-		computed: {
-			clearPhone() {
-				if (this.phone == '') {
-					return (this.noPhone = true);
 				}
 			},
 		},

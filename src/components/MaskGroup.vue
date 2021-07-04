@@ -1,6 +1,6 @@
 <template>
 	<div class="mask-group">
-		<img class="mask-img" src="../assets/Mask Group.png" />
+		<img class="mask-img" src="../assets/1964.png" />
 		<div class="mask-group-desc">
 			<div class="mask-text" style="margin-bottom: 41px">
 				Oldest home-grown insurance company in Qatar you can trust.
