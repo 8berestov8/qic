@@ -2,7 +2,7 @@
 	<div class="main">
 		<Logo />
 		<Gradient />
-		<div class="car-wrap">
+		<div class="car">
 			<u-animate-container>
 				<u-animate
 					name="fadeIn"
@@ -112,12 +112,17 @@
 	}
 	.car {
 		position: absolute;
-		max-width: 1295px;
+
 		height: 100%;
-		width: 70%;
+		width: 83%;
 		left: auto;
 		object-fit: contain;
 		right: 0;
+		z-index: -1;
+		height: 894.07px;
+		left: 284px;
+		top: 0px;
+		overflow: hidden;
 	}
 
 	.working-since {

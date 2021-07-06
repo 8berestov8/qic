@@ -1,8 +1,8 @@
 <template>
 	<form id="form" class="animated fadeIn">
 		<div class="form-title">
-			<p class="approximate">Get Insured in ~4 min</p>
-			<p class="discount">10% discount for online registration</p>
+			<div class="approximate">Get Insured in ~4 min</div>
+			<div class="discount">10% discount for online registration</div>
 		</div>
 		<div class="form-group">
 			<input
@@ -64,7 +64,7 @@
 		height: 137px;
 		left: 480px;
 		top: 520px;
-		padding: 24px;
+		padding: 0 24px 24px;
 		background: #ffffff;
 		border-radius: 30px;
 		margin-bottom: 72px;
@@ -129,6 +129,7 @@
 		border-radius: 8px;
 		padding: 3px 8px 5px;
 		width: 267px;
+		justify-content: center;
 	}
 	.input-form {
 		width: 312px;
@@ -163,7 +164,7 @@
 		width: 24px;
 		height: 24px;
 		left: 30px;
-		top: calc(51% - -42px / 2);
+		top: calc(51% + -2px);
 	}
 
 	.btn-form {
